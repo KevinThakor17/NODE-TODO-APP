@@ -9,13 +9,19 @@
 </head>
 <body>
     <div class="container mt-5 mb-5">
-        <h2>To Do Application</h2>
-        <form class="row" action="/add-task" method="POST">
+
+        <h2 class="col-8">To Do Application</h2>
+            
+        <form class="row" action="<%= userData ? `/update/${userData[0].id}` : '/add-task' %>" method="POST">
             <div class="mb-3 col-9">
-              <input type="text" class="form-control" id="task" placeholder="Enter Your Task" name="title" required>
+              <input type="text" class="form-control" id="task" placeholder="Enter Your Task" name="title" required 
+              value="<%= userData ? userData[0].title : '' %>">
             </div>
             <div class="col-3">
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                <button type="submit" class="btn btn-primary"><%- userData ? '<i class="fa-solid fa-rotate"></i>' : '<i class="fa-solid fa-plus"></i>' %></button>
+                <% if(userData){ %>
+                    <a href="/" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i></a>
+                <% } %>
             </div>
           </form>
 
@@ -32,6 +38,7 @@
                     <a href="/not-done/<%= data.id %>" class="btn btn-success"><i class="fa-solid fa-xmark"></i></a>
                 <% } %>
 
+                    <a href="/edit/<%= data.id %>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a href="/delete/<%= data.id %>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this task?')"><i class="fa-solid fa-trash"></i></a>
                 </div>
             </li>
