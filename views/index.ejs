@@ -13,11 +13,11 @@
         <h2 class="col-8">To Do Application</h2>
             
         <form class="row" action="<%= userData ? `/update/${userData[0].id}` : '/add-task' %>" method="POST">
-            <div class="mb-3 col-9">
+            <div class="mb-3 col-11">
               <input type="text" class="form-control" id="task" placeholder="Enter Your Task" name="title" required 
               value="<%= userData ? userData[0].title : '' %>">
             </div>
-            <div class="col-3">
+            <div class="col-1">
                 <button type="submit" class="btn btn-primary"><%- userData ? '<i class="fa-solid fa-rotate"></i>' : '<i class="fa-solid fa-plus"></i>' %></button>
                 <% if(userData){ %>
                     <a href="/" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i></a>
@@ -29,7 +29,7 @@
 
             <% result.map((data)=>{ %>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center <%= data.done ? 'text-decoration-line-through' : '' %>">
+            <li class="list-group-item d-flex justify-content-between align-items-center <%= data.done ? 'text-decoration-line-through bg-light' : '' %>">
                 <%- data.title %>
                 <div>
                 <% if(!(data.done)){ %>
