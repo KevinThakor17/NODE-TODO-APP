@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const db = require('./config/db');
 const ejs = require('ejs');
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.json());
@@ -92,10 +94,7 @@ app.get('/not-done/:id',(req,res)=>{
     })
 })
 
-app.listen(6001,(err)=>{
-    if (err) {
-        throw err;
-    }
-    console.log("App is Running");
-    
-})
+app.listen(process.env.PORT, (err) => {
+    if (err) throw err;
+    console.log(`APP IS RUNNING ON PORT: ${process.env.PORT}`);
+  });

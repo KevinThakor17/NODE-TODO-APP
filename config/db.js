@@ -1,10 +1,12 @@
 const mysql = require("mysql2");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const db = mysql.createConnection({
-    host:"sql12.freesqldatabase.com",
-    user: "sql12788273",
-    password: "Agh6qTdrvh",
-    database: "sql12788273"
+    host: process.env.HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 })
 
 db.connect((err)=>{
